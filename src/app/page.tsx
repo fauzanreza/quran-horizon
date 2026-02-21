@@ -131,7 +131,8 @@ export default function Home() {
         style={{ background: 'var(--background)', borderBottom: '1px solid rgba(197,160,89,0.1)' }}
       >
         <div className="mx-auto max-w-6xl">
-          <div className="flex items-center gap-2.5 overflow-hidden">
+          {/* overflow-visible is critical: dropdown panels are position:absolute and must not be clipped */}
+          <div className="flex items-center gap-2.5">
             {/* Label: icon only on mobile, text on sm+ */}
             <div className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest text-gold-600/70 dark:text-gold-400/60 select-none shrink-0">
               <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -141,9 +142,9 @@ export default function Home() {
               <span className="hidden sm:inline">Navigasi</span>
             </div>
             <div className="h-5 w-px bg-gold-premium/20 shrink-0" />
-            {/* Navigator fills the rest of the row */}
-            <div className="flex-1 min-w-0">
-              <QuranNavigator />
+            {/* overflow-visible so dropdown panels escape the row bounds */}
+            <div className="flex-1 min-w-0 overflow-visible">
+              <QuranNavigator surahs={surahs} />
             </div>
           </div>
         </div>

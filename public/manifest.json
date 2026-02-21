@@ -1,0 +1,23 @@
+{
+  "name": "Quran Horizon",
+  "short_name": "QuranHorizon",
+  "description": "Premium Digital Mushaf Experience with High Fidelity Typography",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdfdfb",
+  "theme_color": "#064e3b",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #fdfdfb;
+  --foreground: #1a2e26;
+  --emerald-900: #064e3b;
+  --emerald-800: #065f46;
+  --emerald-700: #047857;
+  --emerald-600: #059669;
+  --emerald-500: #10b981;
+  --gold-500: #c5a059;
+  --gold-600: #b38d45;
+  --gold-400: #d4af37;
+  --gold-100: #f3edd7;
+  --cream: #fbfbf2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-emerald-deep: var(--emerald-900);
+  --color-gold-premium: var(--gold-500);
+  --font-sans: 'Outfit', sans-serif;
+}
+
+/* Dark mode handled by class, not system preference */
+:root[class~="dark"] {
+  --background: #080d0b;
+  --foreground: #e2e8f0;
+  --cream: #111d18;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Outfit', sans-serif;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(6, 78, 59, 0.03) 0, transparent 50%), 
+    radial-gradient(at 100% 100%, rgba(197, 160, 89, 0.05) 0, transparent 50%);
+  background-attachment: fixed;
+}
+
+@font-face {
+  font-family: 'LPMQ_Isep_Misbah';
+  src: url('/fonts/lpmq-isep-misbah.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Premium Number Badge Style */
+.number-badge {
+  background: linear-gradient(135deg, var(--emerald-800), var(--emerald-600));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(6, 78, 59, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.number-badge::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  opacity: 0.5;
+}
+
+/* Premium Islamic Card Effect */
+.islamic-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  box-shadow: 0 10px 25px -5px rgba(6, 78, 59, 0.05), inset 0 0 20px rgba(197, 160, 89, 0.02);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dark .islamic-card {
+  background: rgba(17, 29, 24, 0.7);
+  border: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+.islamic-card:hover {
+  border-color: var(--gold-400);
+  box-shadow: 0 20px 40px -10px rgba(197, 160, 89, 0.2);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.quran-indo {
+  font-family: 'LPMQ_Isep_Misbah', 'Amiri', serif;
+  direction: rtl;
+  line-height: 2.2;
+  text-align: right;
+}
+
+/* Glassmorphism Header */
+.premium-header {
+  background: rgba(253, 253, 251, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid rgba(197, 160, 89, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.dark .premium-header {
+  background: rgba(8, 13, 11, 0.85);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--emerald-800), var(--emerald-600));
+  border-radius: 10px;
+  border: 2px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-500);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #b38d45 0%, #d4af37 50%, #b38d45 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.islamic-ornament {
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l5.878 17.5l18.622.5L39.5 30.5l5.878 17.5L30 38.5l-15.378 9.5L20.5 30.5l-14.999-12.5 18.622-.5L30 0z' fill='%23c5a059' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* Print Styles */
+@media print {
+  @page { margin: 1cm; size: A4; }
+  
+  body { 
+    -webkit-print-color-adjust: exact; 
+    print-color-adjust: exact;
+  }
+  
+  /* Hide UI Elements */
+  .fixed, 
+  footer,
+  aside,
+  .islamic-ornament,
+  .number-badge { 
+  }
+  
+  /* Hide Links and Buttons inside header except Title */
+  .premium-header button, 
+  .premium-header a { 
+  }
+
+  /* Reset Header */
+  .premium-header {
+  }
+  
+  .premium-header h1 {
+  }
+
+  .premium-header p {
+  }
+  
+  /* Reset Main Layout */
+  main {
+  }
+
+  /* Cards */
+  .islamic-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  /* Bismillah */
+  .bismillah-container {
+      page-break-after: avoid;
+      text-align: center;
+      margin-bottom: 2rem;
+  }
+  
+  .quran-indo {
+  }
+
+  /* Show Verse Number differently for print */
+  .islamic-card::before {
+      content: attr(data-verse);
+      display: block;
+      font-size: 10pt;
+      font-weight: bold;
+      color: #064e3b;
+      margin-bottom: 0.5rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  @page { margin: 1cm; size: A4; }
+  
+  body { 
+    background: white !important; 
+    color: black !important; 
+    -webkit-print-color-adjust: exact; 
+    print-color-adjust: exact;
+    font-family: serif !important;
+  }
+  
+  .fixed, 
+  aside,
+  .islamic-ornament,
+  .premium-header button, 
+  .premium-header a,
+  .personalization-btn { 
+    display: none !important; 
+  }
+
+  .premium-header {
+    position: static !important;
+    background: none !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin-bottom: 2rem !important;
+    box-shadow: none !important;
+    color: black !important;
+    margin: 50px auto !important;
+    text-align: center !important;
+  }
+  
+  .premium-header h1 {
+    font-size: 24pt !important;
+    color: black !important;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ddd;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 10px !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    background: transparent !important;
+  }
+
+  .islamic-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: none !important;
+    border-bottom: 1px solid #eee !important;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+    padding: 1.5rem 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    display: block !important;
+  }
+  
+  .number-badge {
+    display: none !important; /* Hide badge, standard book uses verse end symbol or just number inline */
+  }
+
+  /* Force verse number at end of verse */
+  .quran-indo::after {
+    content: " ۝" attr(data-end-verse);
+    font-size: 0.8em;
+    color: #444;
+  }
+
+  .quran-indo {
+      color: black !important;
+      font-size: 18pt !important; 
+      line-height: 2.2 !important;
+      text-align: justify !important; 
+      direction: rtl !important;
+  }
+
+  /* Latin & Translation Styling */
+  .islamic-card p:not(.quran-indo) {
+     font-family: serif !important;
+     font-size: 11pt !important;
+     color: #333 !important;
+     line-height: 1.5 !important;
+     text-align: justify !important;
+     font-style: normal !important;
+     margin-top: 5px !important;
+  }
+  
+  /* Bismillah Centered Box */
+  .relative.py-10.px-6.mb-8.text-center {
+      border: 3px double #000 !important;
+      padding: 15px 40px !important;
+      margin: 20px auto !important;
+      background: #fdfdfb !important;
+      border-radius: 15px !important;
+      width: fit-content !important;
+      box-shadow: none !important;
+  }
+  
+  .relative.py-10.px-6.mb-8.text-center .absolute {
+      display: none !important; /* Hide decorative absolute lines */
+  }
+}
+
+/* Print-Only Utility Fixes */
+@media print {
+  /* Hide the PDF generator container during normal printing */
+  #pdf-export-container { display: none; }
+}
+
+/* Ensure the export container is hidden on screen but laid out for capture */
+#pdf-export-container {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  width: 210mm; 
+  /* Min height ensuring A4 ratio or auto, but width is key */
+  background: white;
+  z-index: -50;
+  /* Use explicit fonts for capture */
+  font-family: serif;
+}
+
+#pdf-export-container .quran-indo {
+    font-family: "LPMQ_Isep_Misbah", serif;
+    direction: rtl;
+}
+
+/* Diamond Shape Helper */
+.diamond-shape {
+    width: 20px;
+    height: 20px;
+    background: #064e3b;
+    transform: rotate(45deg);
+    border: 3px solid #fff;
+    outline: 1px solid #064e3b;
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+}
+
+/* Ayat highlight animation (triggered by QuranNavigator scroll-to) */
+@keyframes ayat-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(197,160,89,0.5), 0 10px 25px -5px rgba(6,78,59,0.05); border-color: rgba(197,160,89,0.8); }
+  50%  { box-shadow: 0 0 0 12px rgba(197,160,89,0), 0 20px 40px -10px rgba(197,160,89,0.25); border-color: rgba(197,160,89,1); }
+  100% { box-shadow: 0 10px 25px -5px rgba(6,78,59,0.05); border-color: rgba(197,160,89,0.25); }
+}
+
+.ayat-highlight {
+  animation: ayat-pulse 1.8s ease-out forwards;
+}
+
+/* Slim scrollbar for navigator dropdowns */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(197,160,89,0.3); border-radius: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(197,160,89,0.6); }
+
+/* Hide scrollbar for horizontal overflow rows (header controls) */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
